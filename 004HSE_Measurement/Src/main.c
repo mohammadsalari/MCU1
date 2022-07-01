@@ -18,12 +18,59 @@
 
 #include <stdint.h>
 
-#if !defined(__SOFT_FP__) && defined(__ARM_FP)
-  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-#endif
+//RCC
+#define RCC_BASE_ADDR				0x40021000UL
+
+#define RCC_CR_REG_OFFSET			0x00UL
+#define RCC_CR_REG_ADDR				(RCC_BASE_ADDR + RCC_CR_REG_OFFSET)
+
+#define RCC_CFGR_REG_OFFSET			0x04UL
+#define RCC_CFGR_REG_ADDR			(RCC_BASE_ADDR + RCC_CFGR_REG_OFFSET)
+
+#define RCC_AHBENR_REG_OFFSET		0x14UL
+#define RCC_AHBENR_REG_ADDR			(RCC_BASE_ADDR + RCC_AHBENR_REG_OFFSET)
+
+//GPIOA
+#define GPIOA_BASE_ADDR				0x48000000UL
+
+#define GPIOx_MODER_REG_OFFSET		0x00UL
+#define GPIOA_MODER_REG_ADDR		(GPIOA_BASE_ADDR + GPIOx_MODER_REG_OFFSET)
+
 
 int main(void)
 {
-    /* Loop forever */
+
+	//Enable HSE clock (using HSEON bit in RCC_CR register in RCC peripheral)
+	uint32_t *pRccCrReg = (uint32_t *)RCC_CR_REG_ADDR;
+	*pRccCrReg |= (1<<16);//Bit 16 HSEON: HSE clock enable
+
+	//Enable HSEBYP bit (using HSEBYP bit in RCC_CR register in RCC peripheral)
+	*pRccCrReg |= (1<<18);//HSEBYP: HSE crystal oscillator bypass
+
+	//Switch SYSCLK to HSE (using SW bits in RCC_CFGR register in RCC peripheral)
+	uint32_t *pRccCfgrReg = (uint32_t *)RCC_CFGR_REG_ADDR;
+	*pRccCfgrReg &= ~(1<<1);//Bits 1:0 SW: System clock switch
+	*pRccCfgrReg |= (1<<0);
+
+	//Config MCO pin ( this pin is multiplexed on PA8)
+	//a)Enable GPIOA peripheral clock
+	uint32_t *pRccAhbEnrReg = (uint32_t *)RCC_AHBENR_REG_ADDR;
+	*pRccAhbEnrReg |= (1<<17);//Bit 17 IOPAEN: I/O port A clock enable
+
+	//b)Change PA8 mode to AF
+	uint32_t *pGpioaModerReg = (uint32_t *)GPIOA_MODER_REG_ADDR;
+	int pinNumber = 8;
+	*pGpioaModerReg |= (1<< (2*pinNumber+1) );//Bits 2y+1:2y MODERy[1:0]: Port x configuration bits (y = 0..15)
+	*pGpioaModerReg &= ~(1<< (2*pinNumber) );
+
+	//c)Set PA8 functionality to AF0
+	//GPIOx_AFRH Reg default value is 0 so the PA8 is set to AF0 by default
+
+	//d)Select MCO clock source
+	*pRccCfgrReg |= (1<<26);//Bits 26:24 MCO: Microcontroller clock output [100: SYSCLK]
+	*pRccCfgrReg &= ~(1<<25);
+	*pRccCfgrReg &= ~(1<<24);
+
+	/* Loop forever */
 	for(;;);
 }
