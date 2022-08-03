@@ -8,6 +8,12 @@
 #ifndef INC_STM32F303XX_H_
 #define INC_STM32F303XX_H_
 
+
+#include <stdint.h>
+
+
+#define __vo volatile
+
 /*
  * base addresses of SRAM and FLASH memories
  */
@@ -67,6 +73,26 @@
 #define EXTI_BASEADDR						0x40010400U
 #define SYSCFG_BASEADDR						0x40010000U
 
+
+/*
+ * peripheral register definition structure
+ */
+typedef struct {
+	__vo uint32_t MODER;	/*GPIOx MODE Register. 					OFFSET: 0x00 */
+	__vo uint32_t OTYPER;	/*GPIOx Output TYPE Register. 			OFFSET: 0x04 */
+	__vo uint32_t OSPEEDR;	/*GPIOx Output SPEED Register. 			OFFSET: 0x08 */
+	__vo uint32_t PUPDR;	/*GPIOx Pull-Up/Pull-Down Register. 	OFFSET: 0x0c */
+	__vo uint32_t IDR;		/*GPIOx Input Data Register. 			OFFSET: 0x10 */
+	__vo uint32_t ODR;		/*GPIOx Output Data Register. 			OFFSET: 0x14 */
+	__vo uint32_t BSRR;		/*GPIOx Bit Set/Reset Register. 		OFFSET: 0x18 */
+	__vo uint32_t LCKR;		/*GPIOx configuration LoCK Register. 	OFFSET: 0x1c */
+
+	__vo uint64_t AFR;		/*GPIOx Alternate Function Register.	OFFSET: 0x20
+	 	 	 	 	 	 	 *(GPIOx_AFRL and GPIOx_AFRH registers are merged into one register)
+	 	 	 	 	 	 	 */
+
+	__vo uint32_t BRR;		/*GPIOx Bit Reset Register. 			OFFSET: 0x28 */
+}GPIO_RegDef_t;
 
 
 #endif /* INC_STM32F303XX_H_ */
