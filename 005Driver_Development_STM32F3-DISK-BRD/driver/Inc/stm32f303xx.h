@@ -26,6 +26,14 @@
 #define AHB3_BASEADDR						0x50000000U
 
 /*
+ * base addresses of peripherals hanging on AHB1 bus
+ * TODO: complete for other peripherals
+ */
+#define RCC_BASEADDR						0x40021000
+
+
+
+/*
  * base addresses of peripherals hanging on AHB2 bus
  * TODO: complete for other peripherals
  */
@@ -36,7 +44,9 @@
 #define GPIOE_BASEADDR						0x48001000U
 #define GPIOF_BASEADDR						0x48001400U
 
-
+/*
+ *
+ */
 
 
 #endif /* INC_STM32F303XX_H_ */
