@@ -64,7 +64,7 @@
  */
 #define SPI1_BASEADDR						0x40013000U
 #define USART1_BASEADDR						0x40013800U
-
+#define EXTI_BASEADDR						0x40010400U
 
 
 
