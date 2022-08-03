@@ -77,6 +77,7 @@
 /*
  * peripheral register definition structure
  */
+//GPIO register definition structure
 typedef struct {
 	__vo uint32_t MODER;	/*GPIOx MODE Register. 					OFFSET: 0x00 */
 	__vo uint32_t OTYPER;	/*GPIOx Output TYPE Register. 			OFFSET: 0x04 */
@@ -95,6 +96,23 @@ typedef struct {
 }GPIO_RegDef_t;
 
 
+
+//RCC register definition structure
+typedef struct{
+	__vo uint32_t CR;		/*RCC clock Control Register.					OFFSET: 0x00 */
+	__vo uint32_t CFGR;		/*RCC clock ConFiGuration Register. 			OFSSET: 0x04 */
+	__vo uint32_t CIR;		/*RCC Clock Interrupt Register.					OFFSET: 0x08 */
+	__vo uint32_t APB2RSTR;	/*RCC APB2 peripheral ReSeT Register. 			OFFSET: 0x0c */
+	__vo uint32_t APB1RSTR;	/*RCC APB1 peripheral ReSet Register. 			OFFSET: 0x10 */
+	__vo uint32_t AHBENR;	/*RCC AHB peripheral clock ENable Register.		OFFSET: 0x14 */
+	__vo uint32_t APB2ENR;	/*RCC APB2 peripheral clock ENable Register.	OFFSET: 0x18 */
+	__vo uint32_t APB1ENR;	/*RCC APB1 peripheral clock ENable Register.	OFFSET: 0x1c */
+	__vo uint32_t BDCR;		/*RCC RTC domain Control Register.				OFFSET: 0x20 */
+	__vo uint32_t CSR;		/*RCC Control/Status Register. 					OFFSET: 0x24 */
+	__vo uint32_t AHBRSTR;	/*RCC AHB peripheral ReSeT Register. 			OFFSET: 0x28 */
+	__vo uint32_t CFGR2;	/*RCC clock ConFiGuration Register 2. 			OFSSET: 0x2c */
+	__vo uint32_t CFGR3;	/*RCC clock ConFiGuration Register 3. 			OFFSET: 0x30 */
+}RCC_RegDef_t;
 
 
 /*
