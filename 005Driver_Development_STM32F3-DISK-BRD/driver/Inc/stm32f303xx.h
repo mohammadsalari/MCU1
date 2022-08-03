@@ -51,6 +51,10 @@
  */
 #define SPI2_BASEADDR						0x40003800U
 #define SPI3_BASEADDR						0x40003C00U
+#define USART2_BASEADDR						0x40004400U
+#define USART3_BASEADDR						0x40004800U
+#define UART4_BASEADDR						0x40004C00U
+#define UART5_BASEADDR						0x40005000U
 
 
 
@@ -59,6 +63,7 @@
  * TODO: complete for other peripherals
  */
 #define SPI1_BASEADDR						0x40013000U
+#define USART1_BASEADDR						0x40013800U
 
 
 
