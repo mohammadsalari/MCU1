@@ -44,9 +44,24 @@
 #define GPIOE_BASEADDR						0x48001000U
 #define GPIOF_BASEADDR						0x48001400U
 
+
 /*
- *
+ * base addresses of peripherals hanging on APB1 bus
+ * TODO: complete for other peripherals
  */
+#define SPI2_BASEADDR						0x40003800U
+#define SPI3_BASEADDR						0x40003C00U
+
+
+
+/*
+ * base addresses of peripherals hanging on APB2 bus
+ * TODO: complete for other peripherals
+ */
+#define SPI1_BASEADDR						0x40013000U
+
+
+
 
 
 #endif /* INC_STM32F303XX_H_ */
