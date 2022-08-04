@@ -138,6 +138,34 @@ typedef struct{
 #define GPIOE_PCLK_EN()		(RCC->AHBENR |= (1<<21)) 	//Bit 21 IOPEEN: I/O port E clock enable
 #define GPIOF_PCLK_EN()		(RCC->AHBENR |= (1<<22)) 	//Bit 22 IOPFEN: I/O port F clock enable
 
+/*
+ * clock enabling macros for SPIx peripherals
+ */
+#define SPI1_PCLK_EN()		(RCC->APB2ENR |= (1<<12))	//Bit 12 SPI1EN: SPI1 clock enable
+#define SPI2_PCLK_EN()		(RCC->APB1ENR |= (1<<14))	//Bit 14 SPI2EN: SPI2 clock enable
+#define SPI3_PCLK_EN()		(RCC->APB1ENR |= (1<<15))	//Bit 15 SPI3EN: SPI3 clock enable
+
+
+/*
+ * clock enabling macros for USARTx peripherals
+ */
+#define USART1_PCLK_EN()	(RCC->APB2ENR |= (1<<14))	//Bit 14 USART1EN: USART1 clock enable
+#define USART2_PCLK_EN()	(RCC->APB1ENR |= (1<<17))	//Bit 17 USART2EN: USART2 clock enable
+#define USART3_PCLK_EN()	(RCC->APB1ENR |= (1<<18))	//Bit 18 USART3EN: USART3 clock enable
+
+
+/*
+ * clock enabling macros for UARTx peripherals
+ */
+#define UART4_PCLK_EN()		(RCC->APB1ENR |= (1<<19))	//Bit 19 UART4EN: UART4 clock enable
+#define UART5_PCLK_EN()		(RCC->APB1ENR |= (1<<20))	//Bit 20 UART5EN: UART5 clock enable
+
+
+/*
+ * clock enabling macro for the SYSCFG engine
+ */
+#define SYSCFG_PCLK_EN()	(RCC->APB2ENR |= (1<<0))	//Bit 0 SYSCFGEN: SYSCFG clock enable
+
 
 
 
