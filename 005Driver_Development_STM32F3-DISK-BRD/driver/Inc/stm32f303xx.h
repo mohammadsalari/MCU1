@@ -125,4 +125,6 @@ typedef struct{
 #define GPIOE		((GPIO_RegDef_t *)GPIOE_BASEADDR)
 #define GPIOF		((GPIO_RegDef_t *)GPIOF_BASEADDR)
 
+#define RCC			((RCC_RegDef_t *)RCC_BASEADDR)
+
 #endif /* INC_STM32F303XX_H_ */
