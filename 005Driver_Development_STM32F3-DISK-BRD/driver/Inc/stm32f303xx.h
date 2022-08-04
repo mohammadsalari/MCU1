@@ -127,4 +127,18 @@ typedef struct{
 
 #define RCC			((RCC_RegDef_t *)RCC_BASEADDR)
 
+
+/*
+ * clock enabling macros for GPIOx peripherals
+ */
+#define GPIOA_PCLK_EN()		(RCC->AHBENR |= (1<<17))	//Bit 17 IOPAEN: I/O port A clock enable
+#define GPIOB_PCLK_EN()		(RCC->AHBENR |= (1<<18))	//Bit 18 IOPBEN: I/O port B clock enable
+#define GPIOC_PCLK_EN()		(RCC->AHBENR |= (1<<19))	//Bit 19 IOPCEN: I/O port C clock enable
+#define GPIOD_PCLK_EN()		(RCC->AHBENR |= (1<<20)) 	//Bit 20 IOPDEN: I/O port D clock enable
+#define GPIOE_PCLK_EN()		(RCC->AHBENR |= (1<<21)) 	//Bit 21 IOPEEN: I/O port E clock enable
+#define GPIOF_PCLK_EN()		(RCC->AHBENR |= (1<<22)) 	//Bit 22 IOPFEN: I/O port F clock enable
+
+
+
+
 #endif /* INC_STM32F303XX_H_ */
